@@ -3,13 +3,6 @@
 <plist version="1.0">
 <dict>
 
-	<key>io.flutter.embedded_vies_preview</key>
-	<true/>
-	<key>MGLMapboxAccessToken</key>
-	<string>sk.eyJ1Ijoia2ludG9uIiwiYSI6ImNsMmNzNjZ2czBzZDIzZHA5N3F1dXcxYmIifQ.4vGDoL8MSw0bFaWiNFLmOw</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Lokasi</string>
-
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
