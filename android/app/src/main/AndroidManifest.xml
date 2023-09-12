@@ -25,6 +25,8 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:glEsVersion="0x00030001" android:required="true"
         tools:targetApi="eclair" />
+
+    p
    <application
 
 
