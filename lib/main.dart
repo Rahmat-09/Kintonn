@@ -9,17 +9,15 @@ import 'package:untitled/helpers/MaterialColor.dart';
 import 'package:untitled/ui/LayoutNavigationBar.dart';
 import 'package:untitled/ui/LoginPage.dart';
 
+import 'firebase_options.dart';
 import 'helpers/HexColor.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   dynamic token = await SessionManager().get("token");
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyBql1eGH2AqCPARMkM4sgmKSjfWKYT-es4",
-          appId: "1:459643024950:web:29467854b4481f4e5b8a97",
-          messagingSenderId: "459643024950",
-          projectId: "kinton-82dc9"));
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
