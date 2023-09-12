@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/helpers/MaterialColor.dart';
-import 'package:untitled/ui/LayoutNavigationBar.dart';
 import 'package:untitled/ui/LoginPage.dart';
 
 import 'firebase_options.dart';
@@ -15,17 +14,17 @@ import 'helpers/HexColor.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   dynamic token = await SessionManager().get("token");
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
+  await Firebase.initializeApp();
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
 
 
   runApp(MaterialApp(
@@ -35,7 +34,11 @@ Future<void> main() async {
       primaryColor: HexColor("#ef9904"),
     ),
     debugShowCheckedModeBanner: false,
-    home: token != null ? LayoutNavigationBar(accesstoken: token.toString()) : const MyApp(),
+    home: TextButton(
+      onPressed: () => throw Exception(),
+      child: const Text("Throw Test Exception"),
+    ),
+
     routes: {
       'register': (context) => const LoginPage(),
       'login': (context) => const LoginPage(),
